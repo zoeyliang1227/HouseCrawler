@@ -41,20 +41,12 @@ def search():
     sheet['F1'] = 'href'
     sheet['G1'] = 'style'
 
-    # for j in range(300):
-    #     driver.execute_script(
-    #         'window.scrollTo(0, document.body.scrollHeight);')
-    #     time.sleep(1)
     WebDriverWait(driver, timeout).until(
         EC.presence_of_element_located((By.CLASS_NAME, 'item-title')))
     soup = bs4.BeautifulSoup(driver.page_source, 'html.parser')
     house = soup.find_all('a')
     # print(house)
     # print(len(house))
-    # path = 'output.txt'
-    # f = open(path, 'w', encoding='UTF-8')
-    # f.write(str(house))
-    # f.close()
 
     for i in house:
         # print(i)
