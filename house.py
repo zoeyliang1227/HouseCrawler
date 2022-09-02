@@ -33,12 +33,13 @@ def search():
     ws = wb.active
     sheet = wb.create_sheet("house", 0)
     # 先填入第一列的欄位名稱
-    sheet['A1'] = 'text'
-    sheet['B1'] = 'title'
-    sheet['C1'] = 'area'
-    sheet['D1'] = 'subway'
-    sheet['E1'] = 'href'
-    sheet['F1'] = 'style'
+    sheet['A1'] = 'time'
+    sheet['B1'] = 'text'
+    sheet['C1'] = 'title'
+    sheet['D1'] = 'area'
+    sheet['E1'] = 'subway'
+    sheet['F1'] = 'href'
+    sheet['G1'] = 'style'
 
     # for j in range(300):
     #     driver.execute_script(
@@ -59,24 +60,25 @@ def search():
         # print(i)
         data = i.find('div', class_='rent-item-right')
         # print(data)
-        a = i.find('div', class_='item-price-text')
-        b = i.find('div', class_='item-title')
-        c = i.find('div', class_='item-area')
-        d = i.find('div', class_='item-tip subway')
-        e = ws.cell(row=1, column=1).value = '=HYPERLINK("{}")'.format(
+
+        msg = i.find('div', class_='item-msg')
+        price = i.find('div', class_='item-price-text')
+        title = i.find('div', class_='item-title')
+        area = i.find('div', class_='item-area')
+        subway = i.find('div', class_='item-tip subway')
+        link = ws.cell(row=1, column=1).value = '=HYPERLINK("{}")'.format(
             i.get('href'))
+        style = i.find('ul', class_='item-style')
 
-        f = i.find('ul', class_='item-style')
-
-        if not b:
+        if not title:
             pass
         else:
-            if not ('林森北' in c.text):
-                if not ('雅房' in b.text.strip()):
-                    sheet.append([a.text, b.text.strip(), c.text,
-                                  d.text.strip(), e, f.text])
+            if not ('林森北' in area.text):
+                if not ('雅房' in title.text.strip()):
+                    sheet.append([msg.text.strip()[49:55].replace('昨日', '1天前'), price.text, title.text.strip(), area.text,
+                                  subway.text.strip(), link, style.text])
 
-    wb.save("house.xlsx")
+            wb.save("house.xlsx")
 
 
 search()
