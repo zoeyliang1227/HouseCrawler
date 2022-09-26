@@ -5,4 +5,4 @@ __pycache__/
 
 # project specific
 *.xlsx
-/chromedriver.exe
+chromedriver.exe
