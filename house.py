@@ -67,11 +67,10 @@ def search():
         else:
             if not ('林森北' in area.text):
                 if not ('雅房' in title.text.strip()):
-                    if not ('雅房' in style.text()):
-                        if not ('頂樓加蓋' in style.text()):
+                    if not ('雅房' in style.text):
+                        if not ('頂樓加蓋' in style.text):
                             sheet.append([msg.text.strip()[49:55].replace('昨日', '1天前'), price.text, title.text.strip(), area.text,
                                           subway.text.strip(), link, style.text])
-
             wb.save("house.xlsx")
 
 
