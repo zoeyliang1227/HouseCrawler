@@ -22,7 +22,7 @@ def get_driver():
 
     driver = webdriver.Chrome(chrome_options=options)
     driver.get(
-        'https://rent.591.com.tw/?mrtline=100&mrtcoods=4323,4324,4185,4186,4187&searchtype=4&rentprice=9000,12000&other=near_subway&showMore=1&area=8,&multiFloor=2_6,0_1&option=cold,washer,icebox,hotwater,broadband,bed&multiNotice=not_cover,all_sex')
+        'https://rent.591.com.tw/?rentprice=8000,12000&option=cold,washer,icebox,hotwater,naturalgas,broadband,bed&showMore=1&area=10,')
 
     return driver
 
@@ -69,8 +69,8 @@ def search():
                 if not ('雅房' in title.text.strip()):
                     if not ('雅房' in style.text):
                         if not ('頂樓加蓋' in style.text):
-                            sheet.append([msg.text.strip()[49:55].replace('昨日', '1天前'), price.text, title.text.strip(), area.text,
-                                          subway.text.strip(), link, style.text])
+                            if subway:
+                                sheet.append([msg.text.strip()[49:55].replace('昨日', '1天前'), price.text, title.text.strip(), area.text, subway.text.strip(), link, style.text])
             wb.save("house.xlsx")
 
 
