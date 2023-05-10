@@ -22,7 +22,7 @@ def get_driver():
 
     driver = webdriver.Chrome(chrome_options=options)
     driver.get(
-        'https://rent.591.com.tw/?rentprice=8000,12000&option=cold,washer,icebox,hotwater,naturalgas,broadband,bed&showMore=1&area=10,')
+        'https://rent.591.com.tw/?rentprice=8000,40000&option=cold,washer,icebox,hotwater,naturalgas,broadband,bed&showMore=1&area=10,&multiRoom=2,3')
 
     return driver
 
