@@ -22,10 +22,9 @@ def get_driver():
 
     driver = webdriver.Chrome(chrome_options=options)
     driver.get(
-        'https://rent.591.com.tw/?rentprice=8000,35000&option=cold,washer,icebox,hotwater,naturalgas,broadband,bed&showMore=1&area=10,&multiRoom=2,3%27&other=cook')
+        'https://rent.591.com.tw/?rentprice=8000,35000&showMore=1&area=10,&multiRoom=2,3%27,3&other=cook')
 
     return driver
-
 
 def search():
     driver = get_driver()
@@ -45,13 +44,9 @@ def search():
         EC.presence_of_element_located((By.CLASS_NAME, 'item-title')))
     soup = bs4.BeautifulSoup(driver.page_source, 'html.parser')
     house = soup.find_all('a')
-    # print(house)
-    # print(len(house))
 
     for i in house:
-        # print(i)
         data = i.find('div', class_='rent-item-right')
-        # print(data)
 
         msg = i.find('div', class_='item-msg')
         price = i.find('div', class_='item-price-text')
@@ -65,13 +60,13 @@ def search():
         if not title:
             pass
         else:
-            if not ('林森北' in area.text):
-                if not ('雅房' in title.text.strip()):
-                    if not ('雅房' in style.text):
-                        if not ('頂樓加蓋' in style.text):
-                            if subway:
-                                sheet.append([msg.text.strip()[49:55].replace('昨日', '1天前'), price.text, title.text.strip(), area.text, subway.text.strip(), link, style.text])
-            wb.save("house.xlsx")
+            # if not ('林森北' in area.text):
+            #     if not ('雅房' in title.text.strip()):
+            #         if not ('雅房' in style.text):
+            #             if not ('頂樓加蓋' in style.text):
+            if subway:
+                sheet.append([msg.text.strip()[49:55].replace('昨日', '1天前'), price.text, title.text.strip(), area.text, subway.text.strip(), link, style.text])
+        wb.save("house.xlsx")
 
 
 search()
