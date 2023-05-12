@@ -8,4 +8,4 @@
 - python -m pipenv shell
 
 ## Run
-- python house.py
+- pyinstaller house.py
