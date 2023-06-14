@@ -8,7 +8,7 @@
 - python -m pipenv shell
 
 ## Run
-- pyinstaller -F house.py
+- python house.py
 
 <!-- pyinstaller -F <python file>   # 打包成單執行檔，適合小檔
 pyinstaller -D <python file>   # 打包成多個文件，適合框架類程式 -->
