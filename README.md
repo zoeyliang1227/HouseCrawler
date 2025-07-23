@@ -1,7 +1,7 @@
 ># Windows
 
 ## Description
-Use **slelenium** to crawl web data and organize it into `excel`
+Use **slelenium** and **beautifulsoup4** to crawl web data and organize it into `excel`
 
 ## Install
 
