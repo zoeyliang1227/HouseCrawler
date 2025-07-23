@@ -1,7 +1,7 @@
 ># Windows
 
 ## Description
-Use **selenium** to put `.html` on the web page and crawl the required data
+Use **slelenium** to crawl web data and organize it into `excel`
 
 ## Install
 
